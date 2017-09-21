@@ -9,13 +9,17 @@ class StartingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_starting)
-        val stuff = true
+        val stuff = false
+        val intent: Intent?
 
-        if (stuff) {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-            finish()
+        intent = if (stuff) {
+            Intent(this, MainActivity::class.java)
+        } else {
+            Intent(this, AgghiaActivity::class.java)
         }
+
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+        finish()
     }
 }

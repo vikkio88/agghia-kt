@@ -8,6 +8,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import co.vikkio.agghia.libs.Spicchio
+import io.paperdb.Paper
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,7 +42,13 @@ class MainActivity : AppCompatActivity() {
             if (!formValid()) {
                 Toast.makeText(this, "Invalid Data!", Toast.LENGTH_SHORT).show()
             } else {
+
                 val intent = Intent(this, AgghiaActivity::class.java)
+                val spicchio = getSpicchio()
+                intent.putExtra("SPICCHIO", spicchio)
+                Thread().run {
+                    Paper.book().write("savedSpicchio", spicchio)
+                }
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
                 finish()

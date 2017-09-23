@@ -62,8 +62,8 @@ class MainActivity : AppCompatActivity() {
     private fun getSpicchio(): Spicchio {
         return Spicchio(
                 (monthlyWageTxt.text.toString()).toFloatOrNull(),
-                (dailyHoursTxt.text.toString()).toIntOrNull(),
-                (weeklyDaysTxt.text.toString()).toIntOrNull(),
+                (dailyHoursTxt.text.toString()).toInt(),
+                (weeklyDaysTxt.text.toString()).toInt(),
                 startTimeTxt.text.toString()
         )
     }

@@ -13,7 +13,6 @@ class AgghiaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agghia)
         val spicchio = intent.getSerializableExtra("SPICCHIO") as Spicchio
-        println(spicchio)
         var pay = 10f
         dayTxt.text = Dates.today.toString("EEEE")
         payTxt.text = "$pay £"
@@ -21,8 +20,8 @@ class AgghiaActivity : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed(object : Runnable {
             override fun run() {
-                pay += 1
-                payTxt.text = "$pay £"
+                pay += spicchio.perSecond()!!
+                payTxt.text = "${"%.2f".format(pay)} £"
                 handler.postDelayed(this, 1000)
             }
         }, 1000)

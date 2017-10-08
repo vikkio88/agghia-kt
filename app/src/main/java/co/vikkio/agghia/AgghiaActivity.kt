@@ -15,26 +15,27 @@ class AgghiaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agghia)
         val spicchio = intent.getSerializableExtra("SPICCHIO") as Spicchio
+        dayTxt.text = Dates.today.toString("EEEE")
 
         val now = Date()
         if (spicchio.isWorkingDay(now)) {
             onWorkingDay(spicchio, now)
         } else {
-            onWeekend(spicchio, now)
+            onWeekend(spicchio)
         }
-
-
     }
 
-    private fun onWeekend(spicchio: Spicchio, now: Date) {
-
+    private fun onWeekend(spicchio: Spicchio) {
+        dayMessageTxt.text = getString(R.string.weekend_message)
+        payTxt.text = "${spicchio.perDay()?.times(spicchio.weeklyDays)} £"
+        moneyLabelTxt.text = getString(R.string.money_label_weekend)
     }
 
     private fun onWorkingDay(spicchio: Spicchio, now: Date) {
         val startingTimeToday = (Dates.today.toString("yyyy-MM-dd ") + spicchio.startTime).toDate("yyyy-MM-dd HH:mm")
         val elapsed = now.time.minus(startingTimeToday.time) / 1000
         var pay = elapsed * spicchio.perSecond()!!
-        dayTxt.text = Dates.today.toString("EEEE")
+        dayMessageTxt.text = "day ${spicchio.getDayOfWeek(now)} out of ${spicchio.weeklyDays}"
         payTxt.text = "$pay £"
         val handler = Handler()
         handler.postDelayed(object : Runnable {

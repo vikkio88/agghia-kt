@@ -10,6 +10,6 @@
     <string name="earned_so_far_today">earned so far today</string>
     <string name="earned_so_far_week">earned so far this week</string>
     <string name="earned_total_week">total earned this week</string>
-    <string name="weekend_message">You are off Today!</string>
+    <string name="weekend_message">You are off today</string>
     <string name="money_label_weekend">earned this week</string>
 </resources>

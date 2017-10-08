@@ -1,6 +1,7 @@
 package co.vikkio.agghia.libs
 
 import java.io.Serializable
+import java.util.*
 
 data class Spicchio(val monthlyNetWage: Float?, val dailyHours: Int, val weeklyDays: Int, val startTime: String) : Serializable {
     fun isValid(): Boolean {
@@ -8,6 +9,13 @@ data class Spicchio(val monthlyNetWage: Float?, val dailyHours: Int, val weeklyD
             return false
         }
         return true
+    }
+
+    fun isWorkingDay(today: Date): Boolean {
+        val calendar = Calendar.getInstance()
+        calendar.time = today
+        val dayOfTheWeek = calendar.get(Calendar.DAY_OF_WEEK)
+        return dayOfTheWeek - 1 <= this.weeklyDays
     }
 
     private fun perWeek(): Float? = monthlyNetWage?.div(4)

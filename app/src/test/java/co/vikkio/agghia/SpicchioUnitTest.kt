@@ -9,15 +9,10 @@ import org.junit.Assert.assertTrue
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see [Testing documentation](http://d.android.com/tools/testing)
- */
 class SpicchioUnitTest {
     @Test
     @Throws(Exception::class)
-    fun spicchioCalculatesWhetherTodayIsAWorkingDayCorrectly() {
+    fun calculatesWhetherTodayIsAWorkingDayCorrectly() {
         val spicchio = Spicchio(1.0f, 1, 5, "08:00")
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
@@ -34,4 +29,16 @@ class SpicchioUnitTest {
         assertTrue(spicchio.isWorkingDay(aFridayDate))
         assertFalse(spicchio.isWorkingDay(aSaturdayDate))
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun itValidateCorrectlyWhetherATimeIsInTheCorrectFormat() {
+        val spicchioWithCorrectHour = Spicchio(1.0f, 1, 5, "08:00")
+        val spicchioWithWrongHour = Spicchio(1.0f, 1, 5, "ciao:00")
+
+        assertTrue(spicchioWithCorrectHour.isValid())
+        assertFalse(spicchioWithWrongHour.isValid())
+    }
+
+
 }

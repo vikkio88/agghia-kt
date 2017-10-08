@@ -5,11 +5,13 @@ import java.util.*
 
 data class Spicchio(val monthlyNetWage: Float?, val dailyHours: Int, val weeklyDays: Int, val startTime: String) : Serializable {
     fun isValid(): Boolean {
-        if (monthlyNetWage === null || startTime === "") {
+        if (monthlyNetWage === null || startTime === "" || !validHourFormat(startTime)) {
             return false
         }
         return true
     }
+
+    private fun validHourFormat(startTime: String): Boolean = Regex("(0|1|2)[0-9]:[0-5][0-9]").matches(startTime)
 
     fun isWorkingDay(today: Date): Boolean {
         val calendar = Calendar.getInstance()

@@ -22,12 +22,17 @@ class SpicchioUnitTest {
 
         val aFriday = "2017-10-06"
         val aFridayDate = dateFormat.parse(aFriday)
+
         val aSaturday = "2017-10-07"
         val aSaturdayDate = dateFormat.parse(aSaturday)
+
+        val aSunday = "2017-10-08"
+        val aSundayDate = dateFormat.parse(aSunday)
 
         assertTrue(spicchio.isWorkingDay(aMondayDate))
         assertTrue(spicchio.isWorkingDay(aFridayDate))
         assertFalse(spicchio.isWorkingDay(aSaturdayDate))
+        assertFalse(spicchio.isWorkingDay(aSundayDate))
     }
 
     @Test

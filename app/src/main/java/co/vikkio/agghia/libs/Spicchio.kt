@@ -13,7 +13,15 @@ data class Spicchio(val monthlyNetWage: Float?, val dailyHours: Int, val weeklyD
 
     private fun validHourFormat(startTime: String): Boolean = Regex("(0|1|2)[0-9]:[0-5][0-9]").matches(startTime)
 
-    fun isWorkingDay(today: Date): Boolean = getDayOfWeek(today) <= this.weeklyDays
+    fun isWorkingDay(today: Date): Boolean {
+        val dayOfTheWeek = getDayOfWeek(today)
+
+        if (dayOfTheWeek == 0) {
+            return false
+        }
+
+        return getDayOfWeek(today) <= this.weeklyDays
+    }
 
     fun getDayOfWeek(today: Date): Int {
         val calendar = Calendar.getInstance()

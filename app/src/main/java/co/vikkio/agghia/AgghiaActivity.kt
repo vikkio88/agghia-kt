@@ -35,7 +35,7 @@ class AgghiaActivity : AppCompatActivity() {
         val startingTimeToday = (Dates.today.toString("yyyy-MM-dd ") + spicchio.startTime).toDate("yyyy-MM-dd HH:mm")
         val elapsed = now.time.minus(startingTimeToday.time) / 1000
         var pay = elapsed * spicchio.perSecond()!!
-        dayMessageTxt.text = "day ${spicchio.getDayOfWeek(now)} out of ${spicchio.weeklyDays}"
+        dayMessageTxt.text = "day ${spicchio.getDayOfWeek(now) - 1} out of ${spicchio.weeklyDays}"
         payTxt.text = "$pay £"
         val handler = Handler()
         handler.postDelayed(object : Runnable {

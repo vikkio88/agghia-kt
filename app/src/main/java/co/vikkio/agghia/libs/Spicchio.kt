@@ -1,5 +1,9 @@
 package co.vikkio.agghia.libs
 
+import khronos.Dates
+import khronos.plus
+import khronos.toDate
+import khronos.toString
 import java.io.Serializable
 import java.util.*
 
@@ -21,6 +25,17 @@ data class Spicchio(val monthlyNetWage: Float?, val dailyHours: Int, val weeklyD
         }
 
         return getDayOfWeek(today) <= this.weeklyDays
+    }
+
+    fun isWorkingtime(now: Date) {
+
+    }
+
+    fun getTodayStartTime(): Date = (Dates.today.toString("yyyy-MM-dd ") + this.startTime).toDate("yyyy-MM-dd HH:mm")
+    fun getTodayFinishTime(): Date {
+        val endTime = getTodayStartTime()
+        endTime.time += this.dailyHours * 3600
+        return endTime
     }
 
     fun getDayOfWeek(today: Date): Int {

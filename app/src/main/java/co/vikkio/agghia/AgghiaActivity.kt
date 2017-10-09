@@ -32,7 +32,7 @@ class AgghiaActivity : AppCompatActivity() {
     }
 
     private fun onWorkingDay(spicchio: Spicchio, now: Date) {
-        val startingTimeToday = (Dates.today.toString("yyyy-MM-dd ") + spicchio.startTime).toDate("yyyy-MM-dd HH:mm")
+        val startingTimeToday = spicchio.getTodayStartTime()
         val elapsed = now.time.minus(startingTimeToday.time) / 1000
         var pay = elapsed * spicchio.perSecond()!!
         dayMessageTxt.text = "day ${spicchio.getDayOfWeek(now) - 1} out of ${spicchio.weeklyDays}"
